@@ -1,27 +1,49 @@
-.navbar{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 20px 170px;
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 170px;
 }
-.nav-menu{
-    display: flex;
-    align-items: center;
-    list-style: none;
-    gap: 60px;
-    font-size: 20px;
+
+.navbar img {
+  width: 200px;
 }
-.nav-connect{
-    padding: 20px 40px;
-    border-radius: 50px;
-    background: linear-gradient(267deg,#DA7C25 0.36%,#B923E1 102.60%);
-    font-size: 22px;
-    cursor: pointer;
-    transition: 0.5s;
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 60px;
+  font-size: 20px;
 }
-.nav-connect:hover{
-    transform: scale(1.05);
+
+.nav-menu li {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* This ensures underline is centered under text */
+  gap: 5px;
+  cursor: pointer;
 }
-.navbar img{
-    width: 200px;
+
+.nav-menu li img {
+  height: 40px;
+  width: 80%; /* Adjust based on preference */
+  object-fit: contain;
+}
+
+.nav-connect {
+  padding: 20px 40px;
+  border-radius: 50px;
+  background: linear-gradient(267deg, #DA7C25 0.36%, #B923E1 102.60%);
+  font-size: 22px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.nav-connect:hover {
+  transform: scale(1.05);
+}
+.anchor-link{
+    text-decoration: none;
+    color: white;
 }
