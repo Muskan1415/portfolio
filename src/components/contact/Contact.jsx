@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import './Contact.css';
-import theme_pattern from '../../assets/theme_pattern.svg';
-import mail_icon from '../../assets/mail_icon.svg';
-import location_icon from '../../assets/location_icon.svg';
-import call_icon from '../../assets/call_icon.svg';
+import React, { useState } from "react";
+import "./Contact.css";
+import theme_pattern from "../../assets/theme_pattern.svg";
+import mail_icon from "../../assets/mail_icon.svg";
+import location_icon from "../../assets/location_icon.svg";
+import call_icon from "../../assets/call_icon.svg";
+import { motion } from "framer-motion";
 
 const Contact = () => {
   const [result, setResult] = useState("");
@@ -15,32 +16,49 @@ const Contact = () => {
     const formData = new FormData(event.target);
     formData.append("access_key", "42576e8b-cb6c-4c13-8626-c049d6d549c7");
 
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData
-    });
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (data.success) {
-      setResult("Form Submitted Successfully ✅");
-      event.target.reset();
-    } else {
-      console.log("Error", data);
-      setResult("❌ " + data.message);
+      if (data.success) {
+        setResult("✅ Form Submitted Successfully");
+        event.target.reset();
+      } else {
+        console.error("Error", data);
+        setResult("❌ " + data.message);
+      }
+    } catch (err) {
+      console.error("Submit failed", err);
+      setResult("❌ Something went wrong!");
     }
   };
 
   return (
-    <div id='contact' className='contact'>
+    <div id="contact" className="contact">
       <div className="contact-title">
         <h1>Get in touch</h1>
-        <img src={theme_pattern} alt="" />
+        <img src={theme_pattern} alt="theme pattern" />
       </div>
 
       <div className="contact-section">
+        {/* LEFT: Info */}
         <div className="contact-left">
-          <h1>Let's talk</h1>
+          <motion.h1
+            initial={{ x: -30, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{
+              duration: 1.2,
+              ease: "easeInOut",
+            }}
+            viewport={{ once: true }}
+          >
+            Let's talk
+          </motion.h1>
+
           <div className="contact-details">
             <div className="contact-detail">
               <img src={mail_icon} alt="Email" />
@@ -48,7 +66,7 @@ const Contact = () => {
             </div>
             <div className="contact-detail">
               <img src={call_icon} alt="Phone" />
-              <p>+9123778515</p>
+              <p>+91 23778515</p>
             </div>
             <div className="contact-detail">
               <img src={location_icon} alt="Location" />
@@ -57,7 +75,8 @@ const Contact = () => {
           </div>
         </div>
 
-        <form onSubmit={onSubmit} className='contact-right'>
+        {/* RIGHT: Form */}
+        <form onSubmit={onSubmit} className="contact-right">
           <label htmlFor="name">Your Name</label>
           <input
             type="text"
@@ -85,11 +104,16 @@ const Contact = () => {
             required
           ></textarea>
 
-          <button type="submit" className="contact-submit">
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.05 }}
+            type="submit"
+            className="contact-submit"
+          >
             Submit now
-          </button>
+          </motion.button>
 
-          {/* Message display */}
+          {/* Result Message */}
           {result && <p className="form-result">{result}</p>}
         </form>
       </div>

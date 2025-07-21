@@ -7,7 +7,7 @@
 }
 
 .hero img {
-  margin-top: 50px;
+  margin-top: 90px;
   width: 300px;
   height: 300px;
   object-fit: cover;
@@ -153,6 +153,7 @@
   }
 
   .hero img {
+    margin-top: 70px;
     width: 180px;
     height: 180px;
   }
@@ -162,4 +163,8 @@
     font-size: 16px;
     padding: 14px 24px;
   }
+}
+.hero-action a {
+  text-decoration: none;
+  color: white;
 }

@@ -141,4 +141,8 @@
   .footer-bottom-right {
     gap: 10px;
   }
+
+  .footer-email-input {
+     align-items: start;
+  }
 }
